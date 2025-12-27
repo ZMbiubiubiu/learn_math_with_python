@@ -3,6 +3,7 @@ from math import sqrt, sin, cos, atan2
 # def add(v1,v2):
 #     return (v1[0] + v2[0], v1[1] + v2[1])
 
+# 向量加法
 def subtract(v1,v2):
     return (v1[0] - v2[0], v1[1] - v2[1])
 
@@ -23,17 +24,21 @@ def perimeter(vectors):
 def scale(scalar,v):
     return (scalar * v[0], scalar * v[1])
 
+# 极坐标转换为笛卡尔坐标系
 def to_cartesian(polar_vector):
     length, angle = polar_vector[0], polar_vector[1]
     return (length*cos(angle), length*sin(angle))
 
+# 旋转向量
 def rotate(angle, vectors):
     polars = [to_polar(v) for v in vectors]
     return [to_cartesian((l, a+angle)) for l,a in polars]
 
+# 向量平移
 def translate(translation, vectors):
     return [add(translation, v) for v in vectors]
 
+# 笛卡尔坐标系转换为极坐标
 def to_polar(vector):
     x, y = vector[0], vector[1]
     angle = atan2(y,x)
