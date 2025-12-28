@@ -3,7 +3,8 @@ from math import sqrt, pi, ceil, floor
 import matplotlib
 import matplotlib.patches
 from matplotlib.collections import PatchCollection
-from matplotlib.patches import Polygon
+# 修改导入方式，避免与用户定义的Polygon2D类冲突
+from matplotlib.patches import Polygon as MplPolygon
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.pyplot import xlim, ylim
@@ -104,7 +105,8 @@ def draw2d(*objects, origin=True, axes=True, grid=(1,1), nice_aspect_ratio=True,
                     plt.plot([x1,x2],[y1,y2], color=object.color)
             if object.fill:
                 patches = []
-                poly = Polygon(object.vertices, True)
+                # 使用MplPolygon替代Polygon，并修复参数传递
+                poly = MplPolygon(object.vertices, closed=True)
                 patches.append(poly)
                 p = PatchCollection(patches, color=object.fill)
                 plt.gca().add_collection(p)

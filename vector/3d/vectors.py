@@ -13,8 +13,8 @@ from math import sqrt, sin, cos, acos, atan2
 def add(*vectors):
     return tuple(map(sum,zip(*vectors)))
     
-def subtract(v1,v2):
-    return tuple(v1-v2 for (v1,v2) in zip(v1,v2))
+def subtract(v1, v2):
+    return tuple(x1 - x2 for (x1, x2) in zip(v1, v2))
 
 def length(v):
     return sqrt(sum([coord ** 2 for coord in v]))
